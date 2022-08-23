@@ -1,0 +1,104 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="./../templates/simplePageTemplate.xhtml"
+                >
+
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{facesContext.externalContext.response.setStatus(403)}" />
+    </f:metadata>
+
+
+    <ui:define name="title">
+        #{jsfFunctions.appName} - Jogosultsági Hiba
+    </ui:define>
+
+    <ui:define name="html:head">
+        <style type="text/css">
+            .loginError-container {
+                background-color: #ffdb59;
+                width: 50%;
+                padding: 30px;
+                border-style: solid;
+                border-width: 2px;
+                border-color: red;
+                margin:10% auto;
+            }
+
+            .msg {
+                padding: 15px;
+                margin-bottom: 20px;
+                border: 1px solid transparent;
+                border-radius: 4px;
+            }
+
+            .error {
+                color: #a94442;
+                background-color: #f2dede;
+                border-color: red;
+            }
+
+        </style>
+
+        <!--Fókusz a reLogin gombra-->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#loginErrorForm\\:reLogin').focus();
+            });
+        </script>
+    </ui:define>
+
+
+    <!--Fókusz a reLogin gombra-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#forbiddenError\\:reLogin').focus();
+        });
+    </script>
+
+    <ui:define name="content">
+
+        <h:form id="loginErrorForm">
+            <div class="loginError-container">
+
+                <p:outputLabel value="Bejelentkezési hiba" style="font-size: 43px !important;"/>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <p:panelGrid styleClass="noBorderPanelGrid transparentPanelGrid" >
+                    <p:row>
+                        <p:column rowspan="5">
+                            <p:graphicImage name="/images/lock-warning.png" height="90"  width="90" />
+                        </p:column>
+                    </p:row>
+
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="Az alkalmazás használatához Önnek nincs megfelelő jogosultsága!" style="font-size: 28px; color: red" />
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="3">
+                            <h:panelGroup>
+                                <p:button id="reLogin"
+                                          outcome="/login"
+                                          value="Újra"
+                                          icon="ui-icon-arrowrefresh-1-e"
+                                          tabindex="1"
+                                          style="float: right"/>
+                            </h:panelGroup>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

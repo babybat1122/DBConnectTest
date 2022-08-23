@@ -1,0 +1,128 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../templates/pageTemplate.xhtml">
+
+    <ui:define name="title">
+        Mennyi lehetőség wow
+    </ui:define>
+
+    <ui:define name="html:head">
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="ktForm"
+                style="text-align: center">
+
+            <p:panel id="newPanel">
+                <h:outputText value="Keress meg ha tudsz"
+                              style="font-size: 2em; font-weight: bold; color: teal; text-align: center" />
+                <p:separator/>
+                <p:commandButton value="Mi ez?"
+                                 icon="fa-solid fa-egg"
+                                 onclick="PF('dlg1').show();"
+                                 />
+
+            </p:panel>
+        </h:form>
+
+        <h:form id="getdinofactForm"
+                style="text-align: center">
+
+            <p:panel id="newPanel2">
+                <h:outputText value="Vajon itt vagyok?"
+                              style="font-size: 2em; font-weight: bold; color: teal; text-align: center" />
+                <p:separator/>
+                <p:commandButton value="Na vajon?"
+                                 icon="fa-solid fa-meteor"
+                                 onclick="PF('dinodlg').show();"
+                                 />
+
+            </p:panel>
+        </h:form>
+
+        <p:dialog id="dlg1"
+                  header="Find me"
+                  widgetVar="dlg1"
+                  minHeight="100"
+                  width="700">
+
+            <p:panel>
+                <h:outputText value="Keress meg"
+                              id="findmetext"
+                              style="font-size: 2em; font-weight: bold; color: teal; text-align: center;"/>
+            </p:panel>
+
+            <h:form id="nesze">
+                <p:outputPanel style="display: inline-block; align-content: center; margin-top: 2em">
+                    <p:commandButton id="dino"
+                                     value="Nem itt vagyok"
+                                     style="margin-right: 0.6em"
+                                     action="meglepi.xhtml?faces-redirect=true">
+                        <p:ajax event="click"
+                                listener="#{testView.setDino()}"/>
+                    </p:commandButton>
+
+
+                    <p:commandButton id="hal"
+                                     value="Nem is itt vagyok"
+                                     style="margin-right: 0.6em"
+                                     action="meglepi.xhtml?faces-redirect=true">
+                        <p:ajax event="click"
+                                listener="#{testView.setHal()}"/>
+                    </p:commandButton>
+
+                    <p:commandButton id="nyul"
+                                     value="Még csak itt sem"
+                                     action="meglepi.xhtml?faces-redirect=true"
+                                     style="margin-right: 0.6em">
+                        <p:ajax event="click"
+                                listener="#{testView.setNyul()}"/>
+                    </p:commandButton>
+
+                    <p:commandButton id="jo"
+                                     value="Nagyon nem"
+                                     style="margin-right: 0.6em"
+                                     action="foundme.xhtml?faces-redirect=true"/>
+
+                    <p:commandButton id="teve"
+                                     value="Najó talán itt..."
+                                     action="meglepi.xhtml?faces-redirect=true">
+                        <p:ajax event="click"
+                                listener="#{testView.setTeve()}"/>
+                    </p:commandButton>
+                </p:outputPanel>
+            </h:form>
+        </p:dialog>
+
+        <p:dialog id="dinodlg"
+                  header="Dinooo"
+                  widgetVar="dinodlg"
+                  minHeight="100"
+                  width="700">
+
+            <p:panel>
+                <h:outputText value="Nem, de tessék itt egy random dino fact!"
+                              id="dinotext"
+                              style="font-size: 2em; font-weight: bold; color: teal; text-align: center;"/>
+            </p:panel>
+            <p:panel id="factpanel">
+                <h:outputText value="#{dinoView.getRndFact()}"
+                              id="facttext"
+                              style="font-size: 2em; text-align: center; font-style: italic"/>
+            </p:panel>
+            <h:form id="ujfactForm">
+                <p:commandButton id="ujfactBtn"
+                                 value="Ha szeretnél még egy érdekességet, kattints ide!"
+                                 action="#{dinoView.getNewRndFact()}"
+                                 update="factpanel"
+                                 icon="fa-solid fa-drumstick-bite"
+                                 />
+            </h:form>
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>

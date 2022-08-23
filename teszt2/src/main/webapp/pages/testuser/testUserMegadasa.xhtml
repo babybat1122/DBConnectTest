@@ -1,0 +1,130 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                template="./../../templates/simplePageTemplate.xhtml"
+                >
+
+    <ui:define name="title">
+        #{jsfFunctions.appName} - Teszt user megadása
+    </ui:define>
+
+
+    <ui:define name="html:head">
+
+        <style type="text/css">
+
+            #testUserForm\:userValasztoPanel {
+                position: relative;
+                text-align: center;
+                border: 1px solid lightgray !important;
+
+                left: 25%;
+
+                margin-top: 10em;
+                width: 900px;
+            }
+
+            .ui-panel-footer.ui-widget-content {
+                text-align: center;
+            }
+
+
+        </style>
+
+
+        <script type="text/javascript">
+            //<![CDATA[
+
+            /**
+             *
+             * @param {type} testUser
+             * @param {type} testRoles
+             * @returns {undefined}
+             */
+            function setTestUser(testUser, testRoles) {
+                $("#testUserForm\\:testUserName").val(testUser);
+                $("#testUserForm\\:testUserRoles").val(testRoles);
+            }
+
+            /**
+             *
+             */
+            $(document).ready(function () {
+                $("#testUserForm\\:testUserName").val('');
+                $("#testUserForm\\:testUserRoles").val('');
+            });
+
+
+
+            //]]>
+        </script>
+
+    </ui:define>
+
+    <ui:define name="content">
+
+        <h:form id="testUserForm">
+
+            <p:panel id="userValasztoPanel">
+
+                <h:outputText value="Teszt user kiválasztása" style="font-size: 2em; font-weight: bold; color: teal" />
+
+
+
+                <h:inputHidden id="testUserName" />
+                <h:inputHidden id="testUserRoles" />
+
+
+                <div id='buttons'>
+                </div>
+
+
+                <br/>
+                <p:outputPanel style="display: inline-block">
+
+
+                    <p:commandButton value="Minden (-51)"
+                                     ajax="false"
+                                     icon="fa fa-user"
+                                     onclick="setTestUser('u999005', 'BEF_TLEK:BEF_MLAT:BEF_ADM:BEF_FEFO:BEF_LB')"
+                                     action="/pages/afterLogin.xhtml"
+                                     style="margin-right: 0.6em"
+                                     />
+                    <p:commandButton value="Régiós"
+                                     ajax="false"
+                                     icon="fa fa-user"
+                                     onclick="setTestUser('u999004', 'BEF_TLEK:BEF_RLEK')"
+                                     action="/pages/afterLogin.xhtml"
+                                     style="margin-right: 0.6em"
+                                     />
+                    <p:commandButton value="51-es Megyei"
+                                     ajax="false"
+                                     icon="fa fa-user"
+                                     onclick="setTestUser('u999002', 'BEF_TLEK:BEF_LK_51')"
+                                     action="/pages/afterLogin.xhtml"
+                                     style="margin-right: 0.6em"
+                                     />
+                    <p:commandButton value="Megyei"
+                                     ajax="false"
+                                     icon="fa fa-user"
+                                     onclick="setTestUser('u999001', 'BEF_TLEK')"
+                                     action="/pages/afterLogin.xhtml"
+                                     />
+
+                </p:outputPanel>
+            </p:panel>
+
+        </h:form>
+
+        <h:form id="newForm">
+            Új lap <br/>
+            <p:commandButton value="Új lap"
+                             ajax="false"
+                             icon="fa-solid fa-dragon"
+                             action="/pages/mainPage.xhtml?faces-redirect=true"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

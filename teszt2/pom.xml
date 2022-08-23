@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>nav.gov.hu</groupId>
+    <artifactId>teszt2</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <name>teszt2</name>
+    <description>BevFeld WebLogic WebApp Demó</description>
+
+    <organization>
+        <name>NAV INIT, Bevallás-Feldolgozási Rendszerek Fejlesztési Főosztály</name>
+        <url>https://kozmos01.nav.gov.hu/sites/bevfeld/_layouts/15/start.aspx#/Megosztott%20dokumentumok/Forms/AllItems.aspx</url>
+    </organization>
+    <developers>
+        <developer>
+            <id>u[TASZ]</id>
+            <name>Fejlesztő neve</name>
+            <email>email-cime@nav.gov.hu</email>
+            <timezone>+2</timezone>
+        </developer>
+    </developers>
+
+
+    <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <rootDir>${basedir}</rootDir>
+        <reportOutputDir>${rootDir}/site</reportOutputDir>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>hu.gov.nav.bef</groupId>
+            <artifactId>bef-commons-lib-wls</artifactId>
+            <version>LATEST</version>
+        </dependency>
+        <dependency>
+            <groupId>hu.gov.nav.bef</groupId>
+            <artifactId>bef-commons-web-wls</artifactId>
+            <version>LATEST</version>
+        </dependency>
+
+        <!-- Primefaces -->
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>11.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>11.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>resources-monacoeditor</artifactId>
+            <version>11.0.4</version>
+        </dependency>
+
+        <!-- Font awesome -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>6.1.0</version>
+        </dependency>
+
+
+        <!-- @Getter/@Setter/@Data/... -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.6</version>
+        </dependency>
+
+        <!-- LogBack + Slf4j -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+        <!-- StringUtils -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+
+        <!-- ModelMapper -->
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.6.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
+            <version>2.6.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>7.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- resources filtering karbantartás -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <compilerArguments>
+                        <endorseddirs>${endorsed.dir}</endorseddirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${endorsed.dir}</outputDirectory>
+                            <silent>true</silent>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>javax</groupId>
+                                    <artifactId>javaee-endorsed-api</artifactId>
+                                    <version>7.0</version>
+                                    <type>jar</type>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Resources Copy -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <compilationLevel>ADVANCED_OPTIMIZATIONS</compilationLevel>
+                            <warningLevel>DEFAULT</warningLevel>
+                            <outputDirectory>${project.build.directory}/generated-webapp/resources</outputDirectory>
+                            <suffix>.min</suffix>
+                            <useDataUri>true</useDataUri>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/webapp/resources</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>**/*.css</include>
+                                        <include>**/*.js</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!-- Primefaces extensions resource optimizer -->
+            <plugin>
+                <groupId>org.primefaces.extensions</groupId>
+                <artifactId>resources-optimizer-maven-plugin</artifactId>
+                <version>2.3.8</version>
+                <executions>
+                    <execution>
+                        <id>optimize</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>optimize</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <resourcesSets>
+                        <resourcesSet>
+                            <inputDir>${project.build.directory}/generated-webapp</inputDir>
+                        </resourcesSet>
+                    </resourcesSets>
+                </configuration>
+            </plugin>
+
+
+            <!-- WAR gyártás -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.2</version>
+                <executions>
+                    <execution>
+                        <id>default-war</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>war</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>war</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+
+                <configuration>
+                    <webappDirectory>${project.build.directory}/webapp</webappDirectory>
+                    <warSourceDirectory>${project.basedir}/src/main/webapp</warSourceDirectory>
+
+                    <warSourceExcludes>**/resources/**/*.css,**/resources/**/*.js</warSourceExcludes>
+
+                    <!-- Az optimizer cuccait kihagyjuk -->
+                    <packagingExcludes></packagingExcludes>
+
+                    <webResources>
+                        <resource>
+                            <directory>${project.build.directory}/generated-webapp</directory>
+                        </resource>
+                        <resource>
+                            <!-- WebLogic deploy descriptor filterezése -->
+                            <filtering>true</filtering>
+                            <directory>${project.basedir}/src/main/webapp</directory>
+                            <includes>
+                                <include>WEB-INF/weblogic.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+
+                    <!-- Tokenek cseréje a web.xml-ben -->
+                    <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+
+                    <archive>
+                        <manifestEntries>
+                            <WebLogic-Application-Version>${project.version}</WebLogic-Application-Version>
+                        </manifestEntries>
+                    </archive>
+
+                    <warName>${project.artifactId}</warName>
+
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>9.3</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>${rootDir}/nav_checkstyle_config.xml</configLocation>
+                    <suppressionsLocation>${rootDir}/nav_checkstyle_suppressions.xml</suppressionsLocation>
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <excludes>**/generated/**/*</excludes>
+                    <sourceDirectories>
+                        <sourceDirectory>src/main/java</sourceDirectory>
+                    </sourceDirectories>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>checkstyle</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.16.0</version>
+                <configuration>
+                    <printFailingErrors>true</printFailingErrors>
+                    <linkXRef>true</linkXRef>
+                    <rulesets>
+                        <ruleset>${rootDir}/nav_pmd_ruleset.xml</ruleset>
+                    </rulesets>
+                    <excludes>
+                        <exclude>**/generated/**/*</exclude>
+                    </excludes>
+                    <excludeRoots>
+                        <excludeRoot>target/generated-sources</excludeRoot>
+                    </excludeRoots>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pmd</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>validate</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+    <profiles>
+
+        <!-- Lokális munkaállomás -->
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+
+            <properties>
+                <!-- JavaDOC hibák csak warning-ok legyenek -->
+                <additionalparam>-Xdoclint:none</additionalparam>
+            </properties>
+
+            <build>
+                <filters>
+                    <filter>${project.basedir}/_local.filter.properties</filter>
+                </filters>
+
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo>Default (local) profile</echo>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- DEV QT profil -->
+        <profile>
+            <id>_dev_qt</id>
+
+            <properties>
+                <!-- JavaDOC hibák csak warning-ok legyenek -->
+                <additionalparam>-Xdoclint:none</additionalparam>
+            </properties>
+
+            <build>
+                <filters>
+                    <filter>${project.basedir}/_dev_qt.filter.properties</filter>
+                </filters>
+
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo>DEV QT Profile</echo>
+                                        <echo>${project.artifactId}</echo>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- UAT FNAVT PROD profil -->
+        <profile>
+            <id>_uat_fnavt_prod</id>
+
+            <properties>
+                <!-- JavaDOC hibák csak warning-ok legyenek -->
+                <additionalparam>-Xdoclint:none</additionalparam>
+            </properties>
+
+            <build>
+                <filters>
+                    <filter>${project.basedir}/_uat_fnavt_prod.filter.properties</filter>
+                </filters>
+
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>test</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <tasks>
+                                        <echo>UAT FNAVT PROD Profile</echo>
+                                        <echo>${project.artifactId}</echo>
+                                    </tasks>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+
+    <reporting>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.3.0</version>
+            </plugin>
+
+            <!-- források xref -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <linkJavadoc>true</linkJavadoc>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <show>public</show>
+                    <quiet>true</quiet>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <configLocation>${rootDir}/nav_checkstyle_config.xml</configLocation>
+                    <suppressionsLocation>${rootDir}/nav_checkstyle_suppressions.xml</suppressionsLocation>
+                </configuration>
+            </plugin>
+
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.16.0</version>
+                <configuration>
+                    <rulesets>
+                        <ruleset>${rootDir}/nav_pmd_ruleset.xml</ruleset>
+                    </rulesets>
+                    <printFailingErrors>true</printFailingErrors>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </reporting>
+
+</project>
