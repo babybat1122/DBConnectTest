@@ -1,5 +1,0 @@
-<included>
-    <root level="Trace">
-        <appender-ref ref="RollingFile"/>
-    </root> 
-</included>
