@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+    <!--                         -->
+    <!--    JSF                  -->
+    <!--                         -->
+    <context-param>
+        <description>
+            JSF mód ( Development | Production | SystemTest | UnitTest )
+            Development módban nincs cache!!
+            Production módban a cache expire 10 perc lesz
+        </description>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <!--<param-value>${web.inf.project.stage}</param-value>-->
+        <param-value>Production</param-value>
+    </context-param>
+
+    <context-param>
+        <description>
+            Az alkalmazás milyen módban fusson? (Development|Test|Production)
+            !!! A 'javax.faces.PROJECT_STAGE' a tesztre nem használható mert bekapcsolja az Instrumentation profilozást !!!
+        </description>
+        <param-name>ebevallas.project.stage</param-name>
+        <param-value>${web.inf.ebevallas.project.stage}</param-value>
+    </context-param>
+
+
+    <context-param>
+        <description>Nem(!) Development módban engedjen-e u999xxx (file-realm) Teszt usereket belépni?</description>
+        <param-name>Enable.Test.Users.u999xxx</param-name>
+        <param-value>${web.inf.enable.test.users.u999xxx}</param-value>
+    </context-param>
+
+
+    <context-param>
+        <description>
+            State saving mód: client | server (=default).
+            Spring esetén ez nem lehet client (nem minden Spring objektum Serializable)
+        </description>
+        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+        <param-value>server</param-value>
+    </context-param>
+    <context-param>
+        <description>
+            PrimeFaces kiválasztható táblák SelectableDataModelWrapper exception-t okoz PF V5.2 óta
+        </description>
+        <param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!-- PrimeFaces kliens oldali Validáció bekapcsolása -->
+    <context-param>
+        <description>Kliens oldali validáció bekapcsolása</description>
+        <param-name>primefaces.CLIENT_SIDE_VALIDATION</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+
+    <!-- PrimeFaces L&F -->
+    <!--
+    <context-param>
+        <description>PrimeFaces default téma</description>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>aristo</param-value>
+    </context-param>
+    -->
+
+    <context-param>
+        <param-name>primefaces.FLEX</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+
+    <!--                         -->
+    <!-- PrimeFaces Font Awesome -->
+    <!--                         -->
+    <context-param>
+        <description>AweSome fontok engedélyezése</description>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <!-- FontAweSome mime deklarációk -->
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>application/font-ttf</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>application/font-woff</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff2</extension>
+        <mime-type>application/font-woff2</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>otf</extension>
+        <mime-type>font/opentype</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>eot?#iefix</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#exosemibold</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#exobolditalic</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#exomedium</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#exoregular</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg#fontawesomeregular</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>png</extension>
+        <mime-type>image/png</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>xhtml</extension>
+        <mime-type>text/html</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>txt</extension>
+        <mime-type>text/plain;charset=UTF-8</mime-type>
+    </mime-mapping>
+
+    <mime-mapping>
+        <extension>html</extension>
+        <mime-type>text/plain;charset=UTF-8</mime-type>
+    </mime-mapping>
+
+
+    <!--                         -->
+    <!--   OAM WebLogic Filter   -->
+    <!--    bef-commons-web-wls  -->
+    <filter-mapping>
+        <filter-name>OamAuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <description>OAM SSO authentikációs filter (WebLogic JEE alkalmazásokhoz)</description>
+        <filter-name>OamAuthenticationFilter</filter-name>
+        <filter-class>hu.gov.nav.bef.commons.web.filter.OamAuthenticationFilter</filter-class>
+        <init-param>
+            <description>Aktív? (Default: igen; [1|true|yes|igen], minden más esetben false)</description>
+            <param-name>Active</param-name>
+            <param-value>${web.inf.oamauthenticationfilter.active}</param-value>
+        </init-param>
+        <init-param>
+            <description>Ráerőszakolt DEV mód? (test user kiválasztásával indul az app)</description>
+            <param-name>ForceDevMode</param-name>
+            <param-value>${web.inf.oamauthenticationfilter.forcedevmode}</param-value>
+        </init-param>
+    </filter>
+
+
+    <!--                         -->
+    <!--   JSF Servlet           -->
+    <!--                         -->
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <session-timeout>
+            60
+        </session-timeout>
+    </session-config>
+    <!--                         -->
+    <!--  Pages                  -->
+    <!--                         -->
+    <welcome-file-list>
+        <welcome-file>faces/pages/afterLogin.xhtml</welcome-file>
+    </welcome-file-list>
+
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/faces/pages/error/sessionExpired.xhtml</location>
+    </error-page>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/faces/error/errorPage.xhtml</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/faces/error/403-forbidden.xhtml</location>
+    </error-page>
+
+
+    <!--                         -->
+    <!--  Security               -->
+    <!--                         -->
+    <!--          .....          -->
+    <!--                           -->
+    <!-- Védett terület definíció  -->
+    <!--                           -->
+    ${web.inf.security.comment.start}
+    <security-constraint>
+        <display-name>App security</display-name>
+        <web-resource-collection>
+            <web-resource-name>Védett URL</web-resource-name>
+            <description>Alkalmazás lapok</description>
+            <url-pattern>/faces/pages/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>App role-ok a használathoz</description>
+            <role-name>APP_BEF_TLEK</role-name>
+            <role-name>APP_BEF_ADM</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description>!!! A terhelésmegoszó után már nincs SSL, emiatt nem kell bekapcsolni !!!</description>
+            <description>Hálózati kommunikáció ( NONE | INTEGRAL | CONFIDENTIAL (SSL) )</description>
+            <transport-guarantee>NONE</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <login-config>
+        <auth-method>CLIENT-CERT</auth-method>
+        <realm-name>myrealm</realm-name>
+    </login-config>
+    ${web.inf.security.comment.end}
+
+    <!--                                        -->
+    <!-- Használható alkalmazás szerepkör jogok -->
+    <!--                                        -->
+    <security-role>
+        <description>Bizonylatok - bevallások teljeskörű lekérdezésére jogosító felhasználói szerepkör</description>
+        <role-name>APP_BEF_TLEK</role-name>
+    </security-role>
+    <security-role>
+        <description>BEV bevallás lekérdezés minden megyére</description>
+        <role-name>APP_BEF_MLAT</role-name>
+    </security-role>
+    <security-role>
+        <description>Admin</description>
+        <role-name>APP_BEF_ADM</role-name>
+    </security-role>
+    <security-role>
+        <description>Bevallás felelős fejlesztők felhasználói szerepköre - bevallás paramétereinek karbantartása , hibakódok megjelölésére jogosító szerepkör</description>
+        <role-name>APP_BEF_FEFO</role-name>
+    </security-role>
+    <security-role>
+        <description>Bizonylatok - bevallások rögzítésére jogosító felhasználói szerepkör</description>
+        <role-name>APP_BEF_LB</role-name>
+    </security-role>
+
+</web-app>

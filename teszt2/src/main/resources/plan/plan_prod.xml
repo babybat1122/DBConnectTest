@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!--                        PROD sík 		   	      -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<deployment-plan xmlns="http://xmlns.oracle.com/weblogic/deployment-plan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/weblogic/deployment-plan http://xmlns.oracle.com/weblogic/deployment-plan/1.0/deployment-plan.xsd" global-variables="false">
+    <application-name>${project.artifactId}</application-name>
+    <variable-definition>
+        <variable>
+            <name>ProjectStage</name>
+            <value>Production</value>
+        </variable>
+        <variable>
+            <name>EBevProjectStage</name>
+            <value>Production</value>
+        </variable>
+        <variable>
+            <name>EnableTestUsers</name>
+            <value>false</value>
+        </variable>
+        <variable>
+            <name>OAMFilterActive</name>
+            <value>false</value>
+        </variable>
+        <variable>
+            <name>OAMFilterForceDevMode</name>
+            <value>false</value>
+        </variable>
+        <variable>
+            <name>SessionDebugEnabled</name>
+            <value>false</value>
+        </variable>
+    </variable-definition>
+    <module-override>
+        <module-name>${project.artifactId}.war</module-name>
+        <module-type>war</module-type>
+        <module-descriptor external="false">
+            <root-element>web-app</root-element>
+            <uri>WEB-INF/web.xml</uri>
+            <variable-assignment>
+                <name>ProjectStage</name>
+                <xpath>/web-app/context-param/[param-name="javax.faces.PROJECT_STAGE"]/param-value</xpath>
+                <origin>planbased</origin>
+                <operation>replace</operation>
+            </variable-assignment>
+            <variable-assignment>
+                <name>EBevProjectStage</name>
+                <xpath>/web-app/context-param/[param-name="ebevallas.project.stage"]/param-value</xpath>
+                <origin>planbased</origin>
+                <operation>replace</operation>
+            </variable-assignment>
+            <variable-assignment>
+                <name>EnableTestUsers</name>
+                <xpath>/web-app/context-param/[param-name="Enable.Test.Users.u999xxx"]/param-value</xpath>
+                <origin>planbased</origin>
+                <operation>replace</operation>
+            </variable-assignment>
+            <variable-assignment>
+                <name>OAMFilterActive</name>
+                <xpath>/web-app/filter/init-param/[param-name="Active"]/param-value</xpath>
+                <origin>planbased</origin>
+                <operation>replace</operation>
+            </variable-assignment>
+            <variable-assignment>
+                <name>OAMFilterForceDevMode</name>
+                <xpath>/web-app/filter/init-param/[param-name="ForceDevMode"]/param-value</xpath>
+                <origin>planbased</origin>
+                <operation>replace</operation>
+            </variable-assignment>
+        </module-descriptor>
+        <module-descriptor external="false">
+            <root-element>weblogic-web-app</root-element>
+            <uri>WEB-INF/weblogic.xml</uri>
+            <variable-assignment>
+                <name>SessionDebugEnabled</name>
+                <xpath>/weblogic-web-app/session-descriptor/debug-enabled</xpath>
+                <origin>planbased</origin>
+                <operation>replace</operation>
+            </variable-assignment>
+        </module-descriptor>
+    </module-override>
+    <!--<config-root>C:\JEE\EbgInfo\target\webapp\WEB-INF\classes\plan</config-root>-->
+</deployment-plan>

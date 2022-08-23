@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.8/weblogic-web-app.xsd">
+
+    <context-root>teszt2</context-root>
+    <description>teszt2 Projekt</description>
+    <weblogic-version>12.2.1.1</weblogic-version>
+
+    <jsp-descriptor>
+        <keepgenerated>true</keepgenerated>
+        <debug>true</debug>
+    </jsp-descriptor>
+
+    <!-- saját library-k használata -->
+    <container-descriptor>
+        <prefer-application-packages>
+            <package-name>ch.qos.logback.*</package-name>
+            <package-name>org.jboss.logging.*</package-name>
+            <package-name>org.slf4j.*</package-name>
+            <package-name>org.json.*</package-name>
+        </prefer-application-packages>
+
+        <prefer-application-resources>
+            <resource-name>org/slf4j/impl/StaticLoggerBinder.class</resource-name>
+        </prefer-application-resources>
+
+    </container-descriptor>
+
+    <session-descriptor>
+        <cookie-name>JSESSIONID_BEV01</cookie-name>
+    </session-descriptor>
+
+
+    <!-- Szerepkörök - Alkalmazás jogosultságok mapping -->
+    <security-role-assignment>
+        <role-name>APP_BEF_TLEK</role-name>
+        <principal-name>bef_tlek</principal-name>
+    </security-role-assignment>
+    <security-role-assignment>
+        <role-name>APP_BEF_MLAT</role-name>
+        <principal-name>bef_mlat</principal-name>
+    </security-role-assignment>
+    <security-role-assignment>
+        <role-name>APP_BEF_FEFO</role-name>
+        <principal-name>bef_fefo</principal-name>
+    </security-role-assignment>
+    <security-role-assignment>
+        <role-name>APP_BEF_LB</role-name>
+        <principal-name>bef_lb</principal-name>
+    </security-role-assignment>
+    <security-role-assignment>
+        <role-name>APP_BEF_ADM</role-name>
+        <principal-name>bef_adm</principal-name>
+    </security-role-assignment>
+
+
+    <!-- Input kódlapok (GET/PUT) - UTF-8 -->
+    <charset-params>
+        <input-charset>
+            <resource-path>/*</resource-path>
+            <java-charset-name>UTF-8</java-charset-name>
+        </input-charset>
+
+    </charset-params>
+
+
+</weblogic-web-app>

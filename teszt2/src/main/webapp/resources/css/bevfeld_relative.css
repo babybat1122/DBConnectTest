@@ -1,0 +1,424 @@
+@CHARSET "UTF-8";
+
+/* minden szögletes */
+*{
+    border-radius: 0 0 0 0!important;
+}
+
+/* Szögletes sarkok*/
+/*.ui-corner-flat {
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}*/
+
+
+/* FontMéret csökkentés */
+/*.ui-widget ,.ui-widget .ui-widget, .ui-widget-header,.ui-widget-content,.ui-widget-header .ui-widget-header,.ui-widget-content .ui-widget-content,.ui-widget input,.ui-widget select,.ui-widget textarea,.ui-widget button, .ui-selectmanycheckbox {
+    font-size: 98% !important;
+}*/
+
+
+html,
+body {
+    margin:0;
+    padding:0;
+    font-size: 1.5vh !important;
+}
+
+/* --------------------------- Betöltési üzenet --------------------------*/
+#wholegraybackground {
+    position: absolute;
+    width:100%;
+    left:0;
+    top:0;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+#pleaseWaitContainer {
+    position: fixed;
+    background: white;
+    padding: 0.8em;
+    border: solid;
+    border-width: 1px;
+    border-color: gray;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    font-size: 1.2em;
+    color: black;
+    font-family: sans-serif;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3), 0 3px 6px rgba(0,0,0,0.3);
+}
+
+/* ---------------------------------- fejléc -----------------------------*/
+#top {
+    background-color: #ededed;
+    padding:0.2% 0.2%;
+    height: 5.5vh;
+    /*width: 99.6%;*/
+    clear: both;
+}
+#topBalBlokk {
+    float: left;
+}
+#topProgName {
+    font-size: 1.4em !important;
+    color: cadetblue;
+    font-weight: bolder;
+    clear: both;
+}
+#topProgProp {
+    margin-top: 0.2em;
+}
+#topProgProp div {
+    font-size: 1em;
+    color: #999999;
+    margin-right: 2em;
+    float: left;
+}
+#topKozepsoBlokk {
+    float:left;
+    color: darkgray;
+    font-size:0.9em;
+    line-height: 1.2em;
+    margin-left: 10em;
+}
+.headerImage {
+    border: none;
+    float:left;
+    width: 3.6em;
+}
+#topUserAdat1 {
+    float:left;
+    text-align: right;
+    margin-right: 0.2em;
+}
+#topUserAdat2 {
+    float:left;
+}
+#topIkonBlokk {
+    float: left;
+    margin-left: 10em;
+}
+.headerImage-small {
+    border: none;
+    width: 2em;
+    padding: 0.3em;
+}
+#topJobbBlokk {
+    float: right;
+    text-align: right;
+    margin-right: 0.3em;
+}
+#topJobbMod {
+    font-size: 2em;
+    color: gold;
+    clear: both;
+}
+.topJobbRole {
+    font-size: 0.8em;
+    color: #ff6600;
+
+}
+/* -------------------------------- TabMenuForm -----------------------------*/
+/*#tabMenuForm {
+    float:left;
+    width:100%;
+    height: 5.8vh;
+    height: 3.8vh;
+    font-size: 0.85em !important;
+}*/
+.tabMenuStyle {
+    border: none;
+    margin:0;
+    font-size: 0.9em;
+    background-color: #ededed;
+}
+.ui-tabmenu .ui-tabmenu-nav {
+    padding: 0px !important;
+    margin-top: -1px !important;
+}
+/* ----------------------------------- TabView ------------------------------*/
+
+
+
+
+/* ---------------------------------- Button --------------------------------*/
+.ui-button {
+    font-size:0.9em !important;
+}
+
+/* Commandbutton csak az ikonja látszik */
+.iconOnlyButton {
+    background: transparent !important;
+    border: none !important;
+    margin: 0;
+    text-indent: 0;
+    box-shadow: none;
+}
+
+/* ---------------------------------- PanelGrid ------------------------------*/
+/* Panelgrid Margin és padding nélkül */
+.strictPanelGrid.ui-panelgrid>*>tr,
+.strictPanelGrid.ui-panelgrid>*>tr>td {
+    margin: 0;
+    padding: 0;
+}
+
+/* Panelgrid keret nélkül */
+.noBorderPanelGrid.ui-panelgrid>*>tr,
+.noBorderPanelGrid.ui-panelgrid>*>tr>td {
+    border: none;
+}
+
+/* Átlátszó hátterű panelgrid */
+.transparentPanelGrid tr,
+.transparentPanelGrid td {
+    background: transparent !important;
+}
+
+/* ---------------------------------- FieldSet -------------------------------*/
+/* fieldset nagy legend háttér nélkül */
+.windowsFieldSet .ui-fieldset, .ui-fieldset .ui-fieldset-legend {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border-color: transparent;
+}
+
+/* ---------------------------------- Dialog ---------------------------------*/
+.ui-dialog-content {
+    font-size: 0.8em !important;
+    padding: 0.8em !important;
+    min-width: 200px;
+}
+
+.ui-dialog-content ul {
+    margin-top: 0 !important;
+    padding-left: 0.8em !important;
+}
+
+.ui-dialog-content ul li {
+    list-style-type: none !important;
+}
+
+.ui-fileupload-files {
+    font-size: 1em !important;
+}
+
+/* ------- PopUp dialog táblák */
+.popupDialogTable thead th {
+    font-size: 0.7em !important;
+}
+.popupDialogTable .ui-widget-content {
+    font-size: 1em !important;
+}
+/* adatsorok */
+.popupDialogTable .ui-datatable td {
+    font-size: 0.7em !important;
+}
+
+.popupDialogTable .ui-paginator {
+    font-size: 0.8em !important;
+}
+/* átméretezhető tábláknál auto oszlopszélesség */
+.popupDialogTable table, popupDialogTable .ui-datatable-resizable table {
+    table-layout: auto !important;
+}
+
+/* ----------------------- TAB ---------------------------------------------- */
+
+/* TAB-ok feliratának csökkentése */
+.ui-tabs {
+    font-size: 0.8em !important;
+}
+
+/* TAB-ok padding csökkentése */
+.ui-tabs .ui-tabs-panels .ui-tabs-panel{
+    /*height: 100%;*/
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+}
+
+/* TabView ikon */
+.tabImage {
+    border: none;
+    width: 1.2em;
+    height: 1.2em;
+    padding-top: .2em;
+    float: left;
+}
+
+/* ---------------------------------- Datatable ------------------------------*/
+
+.ui-datatable {
+    margin-top: 0.9em !important;
+    margin-bottom: 0.9em !important;
+    font-size: 0.9em !important;
+}
+
+/* Header */
+.ui-datatable .ui-datatable-header {
+    font-size: 1em !important;
+}
+
+/* lábléc */
+.ui-datatable-footer {
+    /*text-align: right !important;*/
+    font-size: 0.9em !important;
+}
+
+/* tábla Fejléc */
+.ui-datatable th {
+    font-size: 0.7em !important;
+}
+
+/* adatsorok */
+.ui-datatable td {
+    font-size: 0.7em !important;
+}
+
+/* filter a header text után */
+.ui-datatable th .ui-column-filter {
+    display: inline;
+    margin-left: 0.9em;
+}
+
+
+/* jobb oldali rendezettség */
+.ui-datatable tbody .alignRight {
+    text-align: right;
+}
+
+/* bal oldali rendezettség */
+.ui-datatable tbody .alignLeft {
+    text-align: left;
+}
+
+/* közép rendezettség */
+.ui-datatable tbody .alignCenter {
+    text-align: center;
+}
+
+/* paginator */
+.ui-paginator {
+    font-size: 0.9em !important;
+}
+
+/* kijelölt cellatartalom text shadow*/
+.ui-datatable .ui-state-highlight {
+    text-shadow: none !important;
+}
+
+/* kijelölt link cellatartalom színe*/
+.ui-datatable .ui-state-highlight a{
+    color: yellow !important;
+}
+
+
+.ui-datatable .ui-column-filter {
+    /*
+    display: block;
+    clear: both;
+    */
+    color:red;
+    font-weight: normal;
+    border-width:1px;
+}
+
+/* -------------------------------- InputText --------------------------------*/
+
+/* Fókuszált input hátterének megváltoztatása */
+.ui-inputfield.ui-state-focus,
+.ui-widget-content .ui-inputfield.ui-state-focus,
+.ui-widget-header .ui-inputfield.ui-state-focus {
+    -moz-box-shadow: 0px 0px 5px #a45b13, inset 0 2px 2px #d19405;
+    -webkit-box-shadow: 0px 0px 5px #a45b13, inset 0 2px 2px #d19405;
+    box-shadow: 0px 0px 5px #a45b13, inset 0 2px 2px #d19405;
+    background-color: khaki;
+}
+
+/* Watermark jelszóhoz */
+.ui-watermark {
+    color: #d0d0d0 !important;
+}
+/* IE watermark */
+*:-ms-input-placeholder {
+    color: #d0d0d0 !important;
+}
+
+
+/* --------------------------------------------------------------------------- */
+
+/* Overlay háttér átlátszóság */
+.ui-widget-overlay {
+    filter:alpha(opacity=30);  /* IE 7 */
+    opacity: 0.3;
+}
+
+/* Táblázat felső pozícionálás */
+.top-aligned-columns td{
+    vertical-align: top;
+}
+
+/* panel középre */
+.centered-panel {
+    position: absolute;
+    left: 25%;
+    margin-top: 5%;
+    width: 400px;
+}
+
+/* PF exporter ikon tulajdonságok */
+.exporter-icons {
+    background: transparent !important;
+    border: none;
+    width: 2em;
+}
+.exporter-icons-fullpage {
+    background: transparent !important;
+    border: none;
+    width: 1em;
+}
+
+/* Táblacellában az ikon (PDF/Excel) */
+.icon-In-TableCell {
+    background: transparent;
+    border: none;
+    height: 1.8em;
+    width: 1.8em
+}
+
+.compressedTable td {
+    padding: 0px !important;
+}
+
+
+.adoazonositoColumnStyle {
+    width: 10em;
+    white-space: pre;
+    text-align: center;
+}
+
+.generaltBarkodColumnStyle {
+    width: 10em;
+    white-space: pre;
+    text-align: center;
+}
+
+.modositasiDatumColumnStyle {
+    width: 10em;
+    white-space: pre;
+    text-align: center;
+}
+
+/* Nincs border */
+.noborder {
+    border: none !important;
+}

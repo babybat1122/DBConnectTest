@@ -1,0 +1,76 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                template="../templates/simplePageTemplate.xhtml"
+                >
+
+    <ui:define name="title">
+        #{jsfFunctions.appName} - Bejelentkezési hiba
+    </ui:define>
+
+    <ui:define name="html:head">
+        <style type="text/css">
+            .loginError-container {
+                margin-top: 100px;
+                background-color: #fec1b2;
+                width: auto;
+                padding: 30px;
+                left: 25%;
+                position: absolute;
+                border-style: solid;
+                border-width: 2px;
+                border-color: red;
+            }
+        </style>
+        <!-- Fókusz a reLogin gombra -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#userErrorForm\\:reLogin').focus();
+            });
+        </script>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form id="userErrorForm">
+
+            <div class="loginError-container">
+
+                <p:outputLabel value="Bejelentkezési hiba" style="font-size: 43px !important;"/>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <p:panelGrid styleClass="noBorderPanelGrid transparentPanelGrid" style="width: 100%">
+                    <p:row>
+                        <p:column rowspan="5">
+                            <p:graphicImage name="/images/lock-warning.png" height="90"  width="90" />
+                        </p:column>
+                    </p:row>
+
+                    <p:row>
+                        <p:column>
+                            <h:outputText value="A felhasználó nem található az SZI rendszerben!" style="font-size: 28px; color: red" />
+                        </p:column>
+                    </p:row>
+                    <p:row>
+                        <p:column colspan="3">
+                            <h:panelGroup>
+                                <p:button id="reLogin"
+                                          outcome="/login"
+                                          value="Újra"
+                                          icon="ui-icon-arrowrefresh-1-e"
+                                          tabindex="1"
+                                          style="float: right"/>
+                            </h:panelGroup>
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
